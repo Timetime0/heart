@@ -1,3 +1,11 @@
+let day;
+let hour;
+let minute;
+let second;
+let click = 0;
+let hover = 0;
+const marryChrismasDay = 25;
+
 document.addEventListener("mousemove", function (e) {
   let body = document.querySelector("body");
   let heart = document.createElement("span");
@@ -20,9 +28,32 @@ document.addEventListener("mousemove", function (e) {
   }, 1000);
 });
 
+const changeTextBtn = (text) => {
+  var button = document.getElementById("btn");
+
+  button.innerHTML = "";
+  var text = document.createTextNode(text);
+  button.appendChild(text);
+};
+
+const clickToBtn = () => {
+  wordflick();
+  changeTextBtn("Don't Chase me");
+};
+
 $(function () {
   $(".tricky").on({
+    click: function () {
+      if (click === 0 && day >= marryChrismasDay) {
+        click++;
+        clickToBtn();
+      }
+    },
     mouseover: function () {
+      hover++;
+      if (click === 0 && hover === 100) {
+        changeTextBtn("Try more");
+      }
       $(this).css({
         left: Math.random() * 90 + "%",
         top: Math.random() * 90 + "%",
@@ -30,8 +61,6 @@ $(function () {
     },
   });
 });
-
-let playSound = () => new Audio('./chrismas1.wav').play()
 
 var words = [
     "Hi, Cam yêu ơi",
@@ -44,10 +73,10 @@ var words = [
     "A thích cả tính cách khùng khùng của em nữa",
     "A không biết sau này sẽ như thế nào",
     "Nhưng hiện tại a cảm thấy rất vui",
-    "Cảm ơn em, Cục Cam của anh",
-    "Chúc cam luôn luôn xinh đẹp và hạnh phúc",
-    "Chúc cam luôn luôn trẻ trung và năng động",
-    "Chúc cam một giáng sinh an lành",
+    "Cảm ơn em, Cục Cam",
+    "Chúc cam luôn xinh đẹp và hạnh phúc",
+    "Chúc cam luôn trẻ trung và năng động",
+    "Chúc cam một giáng sinh an lành bên gia đình",
   ],
   part,
   i = 0,
@@ -58,6 +87,9 @@ var words = [
   skip_delay = 15,
   speed = 70;
 var wordflick = function () {
+  const myAudio = new Audio("christmas.wav");
+  myAudio.play();
+
   setInterval(function () {
     if (forwards) {
       if (offset >= words[i]?.length) {
@@ -73,12 +105,24 @@ var wordflick = function () {
         i++;
         offset = 0;
         if (i >= len) {
+          $(".word").text("");
+          var button = document.getElementById("btn");
+
+          button.innerHTML = "";
+          var text = document.createTextNode(
+            `Merry Christmas then click to see how is an angel`
+          );
+          button.appendChild(text);
+
           return $(".tricky")
             .off("mouseover")
             .on({
               click: function () {
                 $("#time").removeClass("hide-carousel");
-                new Audio('chrismas1.wav').play()
+                $("#btn").hide();
+                const myAudio = new Audio("chrismas1.wav");
+                myAudio.loop = true;
+                myAudio.play();
               },
             });
         }
@@ -97,10 +141,6 @@ var wordflick = function () {
   }, speed);
 };
 
-setTimeout(() => {
-  wordflick();
-}, 1000);
-
 $(document).ready(function () {
   $(".owl-carousel").owlCarousel({
     items: 1,
@@ -108,4 +148,53 @@ $(document).ready(function () {
     autoplay: true,
     autoplayTimeout: 2000,
   });
+
+  getDate();
 });
+
+const getDate = () => {
+  const date = new Date();
+  day = date.getDate();
+  hour = date.getHours();
+  minute = date.getMinutes();
+  second = date.getSeconds();
+
+  var button = document.getElementById("btn");
+  var text = document.createTextNode(
+    `Ngày ${day}, ${hour}:${minute}:${second}`
+  );
+  button.innerHTML = "";
+  button.appendChild(text);
+};
+
+const interVal = setInterval(() => {
+  var button = document.getElementById("btn");
+  var text = document.createTextNode(
+    `Ngày ${day}, ${hour}:${minute}:${second}`
+  );
+
+  if (day >= marryChrismasDay) {
+    button.innerHTML = "";
+    var text = document.createTextNode(`Try to click here`);
+    button.appendChild(text);
+    clearInterval(interVal);
+  }
+
+  second++;
+  if (second > 60) {
+    minute++;
+    second = 0;
+  }
+  if (minute > 60) {
+    hour++;
+    minute = 0;
+  }
+
+  if (hour > 23) {
+    day++;
+    hour = 0;
+  }
+
+  button.innerHTML = "";
+  button.appendChild(text);
+}, 1000);
