@@ -69,7 +69,7 @@ span::before {
 
 .word {
   position: absolute;
-  margin: auto;
+  margin: auto 20px;
   left: 20%;
   top: 20%;
   color: red;
@@ -95,13 +95,54 @@ span::before {
   display: flex;
 }
 
-.hide-carousel {
+.hide {
   display: none !important;
+}
+
+#gift {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+}
+
+#chart {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 10%;
+  left: 20%;
+  cursor: pointer;
+  z-index: 1000;
+}
+#question {
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  top: 10%;
+  left: 40%;
+}
+
+#question h1 {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: orangered;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
 
 @media screen and (max-width: 600px) {
   body {
     overflow: unset;
+  }
+
+  #btn {
+    left: 0% !important;
+    top: 50%;
   }
 
   .text {
@@ -110,13 +151,36 @@ span::before {
 
   .word {
     font-size: 20px;
+    left: 0;
+    top: 20%;
+    margin: 0 20px;
   }
 
   .owl-carousel {
-    top: 35%;
+    top: 10%;
   }
 
   .owl-carousel .owl-item img {
     height: auto;
+  }
+
+  #gift {
+    left: 25%;
+    top: 45%;
+  }
+
+  #chart {
+    top: 0%;
+    left: 0%;
+  }
+
+  #question {
+    top: 0%;
+    bottom: 10%;
+    left: 10%;
+  }
+
+  #question h1 {
+   font-size: 23px;
   }
 }

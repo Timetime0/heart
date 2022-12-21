@@ -26,7 +26,7 @@
 
     <div class="word"></div>
 
-    <div id="time" class="owl-carousel owl-theme hide-carousel">
+    <div id="time" class="owl-carousel owl-theme hide">
       <div class="d-flex flex-row">
         <img src="./img/lop_1.jpg" alt="" />
         <p class="text">Lớp 1 (hên xui):Hồi còn nhỏ, còn biếng ăn</p>
@@ -61,11 +61,15 @@
       </div>
       <div class="d-flex flex-row">
         <img src="./img/lop_9.jpg" alt="" />
-        <p class="text">Lớp 9: Bắt đầu chụp góc nghiêng và giả bộ cười tủm tỉm</p>
+        <p class="text">
+          Lớp 9: Bắt đầu chụp góc nghiêng và giả bộ cười tủm tỉm
+        </p>
       </div>
       <div class="d-flex flex-row">
         <img src="./img/lop_10.jpg" alt="" />
-        <p class="text">Lớp 10: Bắt đầu chụp mọi góc độ và thần thái đỉnh cao</p>
+        <p class="text">
+          Lớp 10: Bắt đầu chụp mọi góc độ và thần thái đỉnh cao
+        </p>
       </div>
       <div class="d-flex flex-row">
         <img src="./img/lop_11.jpg" alt="" />
@@ -81,13 +85,46 @@
       </div>
       <div class="d-flex flex-row">
         <img src="./img/chrismas.jpg" alt=""" />
-        <p class="text">I love u <i class="fa-solid fa-heart"></i></p>
+        <div class="text">
+          <p>I love u <i class="fa-solid fa-heart"></i></p>
+          <button
+            onclick="onClickBtn2()"
+            id="btn2"
+            type="button"
+            class="btn btn-success"
+          >
+            Click me
+          </button>
+        </div>
       </div>
     </div>
 
     <button id="btn" type="button" class="btn btn-danger btn-wrap tricky">
       Click Here
     </button>
+
+    <div id="gift" class="hide">
+      <form class="d-flex">
+        <input
+          id="input"
+          class="form-control"
+          type="text"
+          placeholder="Gift"
+          aria-label="default input example"
+        />
+        <button
+          onclick="onClickSubmit()"
+          id="btn3"
+          type="button"
+          class="btn btn-danger"
+        >
+          First gift
+        </button>
+      </form>
+    </div>
+
+    <div id="chart" class="hide"></div>
+    <div id="question" class="hide"><h1></h1></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -96,6 +133,13 @@
     ></script>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="/node_modules/@sendgrid/client/index.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/fdf7b4eb0d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="index.js"></script>
   </body>
 </html>
