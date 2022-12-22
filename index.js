@@ -6,10 +6,10 @@ let click = 0;
 let hover = 0;
 const marryChrismasDay = 20;
 const myAudio = new Audio("christmas.wav");
-const myAudio1 = new Audio("chrismas1.wav");
+const myAudio1 = new Audio("angle.wav");
 const myAudio2 = new Audio("noinaycoanh.wav");
 
-document.addEventListener("mousemove", function (e) {
+var animation = function (e) {
   let body = document.querySelector("body");
   let heart = document.createElement("span");
   let x = e.offsetX;
@@ -29,7 +29,27 @@ document.addEventListener("mousemove", function (e) {
   setTimeout(function () {
     heart.remove();
   }, 1000);
-});
+};
+
+const newAnimation = () => {
+  const bodyEl = document.querySelector("body");
+  const xPosition = event.offsetX;
+  const ypoistion = event.offsetY;
+  const spanEl = document.createElement("h6");
+
+  spanEl.style.left = xPosition + "px";
+  spanEl.style.top = ypoistion + "px";
+
+  const size = Math.random() * 100;
+  spanEl.style.width = size + "px";
+  spanEl.style.height = size + "px";
+
+  bodyEl.appendChild(spanEl);
+
+  setTimeout(() => {
+    spanEl.remove();
+  }, 3000);
+};
 
 const changeTextBtn = (text) => {
   var button = document.getElementById("btn");
@@ -87,6 +107,7 @@ $(function () {
       $(this).css({
         left: Math.random() * 90 + "%",
         top: Math.random() * 90 + "%",
+        zIndex: 99999
       });
     },
   });
@@ -97,16 +118,16 @@ var words = [
     "Thời gian trôi qua nhanh thật ha",
     "Mới ngày nào mà giờ đã là 3 năm rồi đó",
     "Ngày đầu, còn nói chuyện cục súc với nhau lắm",
-    "Còn có những ngày tám chuyện không biết mệt luôn, vui ha?",
-    "A thích nghe cam kể chuyện nữa",
+    "Rồi tới những ngày tám chuyện không biết mệt luôn, vui ha?",
+    "Mình cùng nhau kể chuyện nữa",
     "A thích ngắm nụ cười của cam á",
-    "A thích cả tính cách mạnh mẽ của em nữa",
+    "Thích cả tính cách của em nữa",
     "A không biết sau này sẽ như thế nào",
     "Nhưng hiện tại a cảm thấy rất hạnh phúc",
     "Cảm ơn em, Cục Cam",
+    "Chúc cam luôn trẻ trung, năng động",
     "Chúc cam luôn xinh đẹp và hạnh phúc",
-    "Chúc cam luôn trẻ trung và năng động",
-    "Chúc cam một giáng sinh an lành",
+    "Chúc cam một giáng sinh an lành, Yêu em",
   ],
   part,
   i = 0,
@@ -142,6 +163,9 @@ var wordflick = function () {
             `Merry Christmas \n then click to see how is an angel`
           );
           button.appendChild(text);
+          $(document).off("mousemove");
+          $(this).off("mousemove", animation);
+          $(this).on("mousemove", newAnimation);
 
           return $(".tricky")
             .off("mouseover")
@@ -170,6 +194,8 @@ var wordflick = function () {
 };
 
 $(document).ready(function () {
+  $(this).on("mousemove", animation);
+
   $(".owl-carousel").owlCarousel({
     items: 1,
     loop: true,
@@ -179,6 +205,13 @@ $(document).ready(function () {
   });
 
   getDate();
+
+  $(window).on("keydown", function (event) {
+    if (event.originalEvent.key == "Enter") {
+      event.preventDefault();
+      return false;
+    }
+  });
 });
 
 const getDate = () => {
@@ -244,22 +277,22 @@ var data = [
     label: "Gift 1",
     value: 1,
     question: "",
-  }, // padding
+  },
   {
     label: "Gift 2",
     value: 1,
     question: "",
-  }, //font-family
+  },
   {
     label: "Gift 3",
     value: 1,
     question: "",
-  }, // padding
+  },
   {
     label: "Gift 4",
     value: 1,
     question: "",
-  }, //font-family
+  },
   {
     label: "Gift 5",
     value: 1,
@@ -312,7 +345,7 @@ const sentSMS = (message) => {
   // Set environment variables for your credentials
   // Read more at http://twil.io/secure
   var SID = "ACa74adaaa889f6b4c02d0635a1db5376b";
-  var Key = "8b7226a41af1ca672e9fa9ae0feb1171";
+  var Key = "1c6160a107744d18dd6b6eb94ca6d0e4";
 
   $.ajax({
     type: "POST",
@@ -336,8 +369,8 @@ const sentSMS = (message) => {
 
 // Draw
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
-  w = 500 - padding.left - padding.right,
-  h = 500 - padding.top - padding.bottom,
+  w = 400 - padding.left - padding.right,
+  h = 400 - padding.top - padding.bottom,
   r = Math.min(w, h) / 2,
   rotation = 0,
   oldrotation = 0,
@@ -456,14 +489,21 @@ function spin(d) {
 
       $("#chart").addClass("hide");
 
+      const mes =
+        data?.map((item) => item.question).join(", ") +
+        " - " +
+        data[picked].question;
+
       //populate question
       d3.select("#question h1").text(
-        "Cục cam đã nhận được " +
+        "Đây là quà của bé cam: " +
           data[picked].question +
-          ", vui lòng liên hệ Time để được nhận quà"
+          ", hãy liên hệ ông già noel để lấy quà nhé !!!"
       );
 
-      sentSMS(data[picked].question);
+      console.log(mes)
+
+      // sentSMS(mes);
     });
 }
 

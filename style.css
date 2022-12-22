@@ -101,25 +101,26 @@ span::before {
 
 #gift {
   position: absolute;
-  left: 40%;
-  top: 50%;
+  left: 30%;
+  top: 30%;
+  width: 500px;
 }
 
 #chart {
   position: absolute;
   width: 500px;
   height: 500px;
-  top: 10%;
-  left: 20%;
+  top: 0%;
+  left: 35%;
   cursor: pointer;
   z-index: 1000;
 }
 #question {
   position: absolute;
-  width: 400px;
+  width: 500px;
   height: 500px;
   top: 10%;
-  left: 40%;
+  left: 35%;
 }
 
 #question h1 {
@@ -133,6 +134,58 @@ span::before {
   top: 50%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
+}
+
+h6 {
+  background: url(heart1.png);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-size: cover;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  /*--------------Third------------*/
+  animation: animation 7s linear;
+}
+@keyframes animation {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    /*-------Fourth----------*/
+    filter: hue-rotate(0);
+  }
+  100% {
+    transform: translate(-50%, -5000%);
+    opacity: 0;
+    /*-------Fourth----------*/
+    filter: hue-rotate(720deg);
+  }
+}
+
+h2 {
+  color: red;
+}
+
+h4 {
+  color: red;
+}
+
+#tree {
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+  bottom: 0;
+  right: 0;
+}
+
+#santa {
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+  bottom: 0;
+  left: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -157,7 +210,7 @@ span::before {
   }
 
   .owl-carousel {
-    top: 10%;
+    top: 20%;
   }
 
   .owl-carousel .owl-item img {
@@ -165,22 +218,35 @@ span::before {
   }
 
   #gift {
-    left: 25%;
-    top: 45%;
+    left: 0%;
+    top: 25%;
+    padding: 10px;
+    width: 400px;
   }
 
   #chart {
+    width: 100%;
     top: 0%;
     left: 0%;
+    margin: 10px;
   }
 
   #question {
     top: 0%;
     bottom: 10%;
     left: 10%;
+    width: 350px;
   }
 
   #question h1 {
-   font-size: 23px;
+    font-size: 23px;
+  }
+
+  #tree {
+    width: 180px;
+  }
+
+  #santa {
+    width: 180px;
   }
 }
