@@ -88,7 +88,7 @@ span::before {
   font-size: 50px;
   font-weight: 600;
   text-align: center;
-  margin: auto;
+  margin: 50px;
 }
 
 .flex {
@@ -175,7 +175,7 @@ h4 {
 #tree {
   position: absolute;
   z-index: 100;
-  width: 300px;
+  width: 200px;
   bottom: 0;
   right: 0;
 }
@@ -183,7 +183,7 @@ h4 {
 #santa {
   position: absolute;
   z-index: 100;
-  width: 300px;
+  width: 200px;
   bottom: 0;
   left: 0;
 }
@@ -200,6 +200,7 @@ h4 {
 
   .text {
     font-size: 20px;
+  margin: auto
   }
 
   .word {

@@ -4,7 +4,7 @@ let minute;
 let second;
 let click = 0;
 let hover = 0;
-const marryChrismasDay = 20;
+const marryChrismasDay = 25;
 const myAudio = new Audio("christmas.wav");
 const myAudio1 = new Audio("angle.wav");
 const myAudio2 = new Audio("noinaycoanh.wav");
@@ -75,7 +75,7 @@ const clickToBtn = () => {
 $(function () {
   $(".tricky").on({
     click: function () {
-      if (click === 0 && day >= marryChrismasDay) {
+      if (click === 0 && day === marryChrismasDay) {
         click++;
         clickToBtn();
       }
@@ -235,7 +235,7 @@ const interVal = setInterval(() => {
     `Ngày ${day}, ${hour}:${minute}:${second}`
   );
 
-  if (day >= marryChrismasDay) {
+  if (day === marryChrismasDay) {
     button.innerHTML = "";
     var text = document.createTextNode(`Try to click here`);
     button.appendChild(text);
