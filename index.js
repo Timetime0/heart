@@ -107,7 +107,7 @@ $(function () {
       $(this).css({
         left: Math.random() * 90 + "%",
         top: Math.random() * 90 + "%",
-        zIndex: 99999
+        zIndex: 99999,
       });
     },
   });
@@ -345,7 +345,7 @@ const sentSMS = (message) => {
   // Set environment variables for your credentials
   // Read more at http://twil.io/secure
   var SID = "ACa74adaaa889f6b4c02d0635a1db5376b";
-  var Key = "1c6160a107744d18dd6b6eb94ca6d0e4";
+  var Key = "05770d8ac092d98f089b2b5590591637";
 
   $.ajax({
     type: "POST",
